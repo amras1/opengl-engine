@@ -1,12 +1,12 @@
 #ifndef LSYSTEM_H
 #define LSYSTEM_H
+#include <GL/glut.h>
 #include <string>
 #include <vector>
 #include <cmath>
 #include "Point.h"
 #include "Vector.h"
 #include "Debug.h"
-#include <GL/glut.h>
 
 const int LSYSTEM_RECURSIVE_DEPTH = 4;
 const int MAX_LSYSTEM_DEPTH = 10;

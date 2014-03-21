@@ -1,6 +1,7 @@
 #include "Vector.h"
 #include "Debug.h"
 #include <iostream>
+#include <cmath>
 
 template <class T>
 T Vector3<T>::dot(const Vector3<T> &v) const

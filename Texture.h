@@ -7,6 +7,7 @@
 #include <map>
 #include <vector>
 #include <GL/gl.h>
+#include <GL/glext.h>
 
 class Texture
 {

@@ -2,6 +2,7 @@
 #include <AL/alut.h>
 #include <AL/al.h>
 #include <algorithm>
+#include <ctime>
 #include "Image.h"
 #include "Camera.h"
 #include "Skybox.h"

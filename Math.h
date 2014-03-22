@@ -2,7 +2,7 @@
 #define MATH_H
 #include <cmath>
 
-#define PI 3.14159265358979
+const double PI = 3.14159265358979;
 
 inline float dsin(float degrees)
 {

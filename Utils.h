@@ -23,7 +23,7 @@ inline FILE *file_open(const char *img, const char *mode)
 
 inline std::string getpath(const std::string &filename)
 {
-    unsigned int pos = filename.rfind('/');
+    size_t pos = filename.rfind('/');
     return (pos != std::string::npos ? filename.substr(0, pos + 1) : "");
 }
 

@@ -3,8 +3,15 @@
 #include "Debug.h"
 #include <cstdlib>
 
+/*
+
+Credit for this class goes to "Game Programming Gems",
+section 1.3 by Scott Bilas.
+
+*/
+
 template <class DERIVED>
-class Singleton //Credit for this class goes to "Game Programming Gems", section 1.3 by Scott Bilas
+class Singleton
 {
 private:
     static DERIVED *instance;

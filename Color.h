@@ -2,7 +2,7 @@
 #define COLOR_H
 #include "Debug.h"
 
-#include <GL/gl.h>
+#include "GLIncludes.h"
 #define BLACK Color3f(0.0f, 0.0f, 0.0f)
 #define WHITE Color3f(1.0f, 1.0f, 1.0f)
 #define RED Color3f(1.0f, 0.0f, 0.0f)

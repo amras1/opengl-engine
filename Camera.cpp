@@ -1,8 +1,8 @@
 #include "Camera.h"
 #include "Vector.h"
 #include "Vector.cpp" //TODO: something weird with linkage, needs to be fixed 3
-#include <GL/glu.h>
 #include "Math.h"
+#include "GLIncludes.h"
 
 void Camera::orient(bool translate) const
 {

@@ -1,8 +1,7 @@
-#include <GL/glut.h>
-#include <AL/alut.h>
-#include <AL/al.h>
+#include "GLIncludes.h"
 #include <algorithm>
 #include <ctime>
+#include <cstdlib>
 #include "Image.h"
 #include "Camera.h"
 #include "Skybox.h"
@@ -16,26 +15,19 @@
 Texture grass, water, snow, fireworks;
 Camera cam, oldcam;
 Skybox box;
-//Fountain fountain;
+Fountain fountain;
 Plant plant;
 //SimplePlant simple_plant;
 Point3f fountain_pos(0.0, 0.0, -5.0);
 const int NUM_PLANTS = 4;
 Point3f plant_pos[NUM_PLANTS];
-ALuint sources[2];
-ALuint buffers[2];
 bool cam_saved = false;
-//GLUquadricObj *qobj;
 const int WIDTH = 700, HEIGHT = 550;
 float zoom = 1.0;
 //Model model;
 
 void cleanUp()
 {
-    alDeleteSources(2, sources);
-    alDeleteBuffers(2, buffers);
-    alutExit();
-//    gluDeleteQuadric(qobj);
     delete loggerPtr;
     delete textureManagerPtr;
 }
@@ -92,55 +84,14 @@ void init()
     fireworks = textureManager.load(img_fireworks);
 
     box.init(front, left, back, right, up, down);
-
-    alutInit(0, 0);
-    alGenBuffers(2, buffers);
-
-    ALenum format;
-    ALvoid *data;
-    ALsizei size;
-    ALsizei freq;
-    ALboolean loop;
-
-    alutLoadWAVFile((ALbyte *)"bach.wav", &format, &data, &size, &freq, &loop);
-    alBufferData(buffers[0], format, data, size, freq);
-    alutUnloadWAV(format, data, size, freq);
-    alutLoadWAVFile((ALbyte *)"fountain.wav", &format, &data, &size, &freq, &loop);
-    alBufferData(buffers[1], format, data, size, freq);
-    alutUnloadWAV(format, data, size, freq);
-
-    alGenSources(2, sources);
-
-    alSourcei(sources[0], AL_BUFFER, buffers[0]);
-    alSourcei(sources[0], AL_SOURCE_RELATIVE, AL_TRUE);
-    alSourcei(sources[0], AL_LOOPING, AL_TRUE);
-    alSource3f(sources[0], AL_POSITION, 0.0, 0.0, 0.0);
-    alSourcei(sources[1], AL_BUFFER, buffers[1]);
-    alSource3f(sources[1], AL_POSITION, fountain_pos.getX(), fountain_pos.getY(), fountain_pos.getZ());
-    alSourcei(sources[1], AL_LOOPING, AL_TRUE);
-
-    alListener3f(AL_POSITION, 0.0, 0.0, 0.0);
     atexit(cleanUp);
 
-    alSourcePlay(sources[0]);
-
-    Point3f bounds(15.0, 0.0, 15.0);
+    Point3f bounds(5.0, 0.0, 5.0);
 
     for (int i = 0; i < NUM_PLANTS; ++i)
-        plant_pos[i] = random(bounds);/*
+        plant_pos[i] = random(bounds);
 
-    qobj = gluNewQuadric();
-    gluQuadricNormals(qobj, GLU_SMOOTH);
-    model.load("untitled.model");*/
-}
-
-void adjustSound()
-{
-    Point3f pos = cam.getPos();
-    alListener3f(AL_POSITION, pos.getX(), pos.getY(), pos.getZ());
-    Point3f listener_pos = pos + fountain_pos;
-    alSource3f(sources[1], AL_POSITION, fountain_pos.getX(), fountain_pos.getY(), fountain_pos.getZ());
-    alSourcePlay(sources[1]);
+    //model.load("untitled.model");
 }
 
 void display()
@@ -165,29 +116,15 @@ void display()
     glVertex3f(1000.0, -1.0, -1000.0);
     glEnd();
 
-    /*glTranslatef(0.0, 15.0, -80.0);
-    glColor3f(0.0, 0.0, 0.0);
-    glutSolidCube(30.0);
-    glTranslatef(0.0, -15.0, 80.0);*/
+    glTranslatef(0.0, 0.0, -10.0);
     glPushMatrix();
     glTranslatef(fountain_pos.getX(), fountain_pos.getY(), fountain_pos.getZ());
-    /*glPushMatrix();
-    glTranslatef(0.0, 1.5, 0.0);
-    glRotatef(90.0, 1.0, 0.0, 0.0);
-    glColor3f(1.0, 0.6, 0.6);
-    gluCylinder(qobj, 3.5, 3.5, 1.5, 16, 16);
-    glPopMatrix();
-    glPushMatrix();
-    glTranslatef(0.0, 2.5, 0.0);
-    glRotatef(90.0, 1.0, 0.0, 0.0);
-    glColor3f(0.4, 0.7, 0.5);
-    gluCylinder(qobj, 2.5, 2.5, 1.0, 16, 16);
-    glPopMatrix();
-    glTranslatef(0.0, 2.5, 0.0);
     textureManager.bind(water);
-    fountain.render();*/
+    fountain.render();
     glPopMatrix();
 
+    glPushAttrib(GL_ENABLE_BIT);
+    glDisable(GL_TEXTURE_2D);
     for (int i = 0; i < NUM_PLANTS; ++i)
     {
         glPushMatrix();
@@ -197,7 +134,7 @@ void display()
     }
 
     //model.render();
-    plant.render();
+    glPopAttrib();
     glFlush();
 }
 
@@ -242,15 +179,12 @@ void keys(unsigned char key, int x, int y)
         setPerspective();
 
     if (show)
-    {
         display();
-        adjustSound();
-    }
 }
 
 void menu_handler(int id)
 {
-   /* bool show = true;
+    bool show = true;
 
     switch (id)
     {
@@ -310,12 +244,12 @@ void menu_handler(int id)
     }
 
     if (show)
-        display();*/
+        display();
 }
 
 void update(int)
 {
-    //fountain.update();
+    fountain.update();
     display();
     glutTimerFunc(30, update, 0);
 }
@@ -332,15 +266,14 @@ void arrows(int key, int, int)
     case GLUT_KEY_DOWN:
         cam.advance(-0.5);
         break;
+    case 27:
+        exit(0);
     default:
         show = false;
     }
 
     if (show)
-    {
         display();
-        adjustSound();
-    }
 }
 
 int main(int argc, char **argv)

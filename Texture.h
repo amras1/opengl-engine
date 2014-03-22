@@ -6,8 +6,7 @@
 #include <string>
 #include <map>
 #include <vector>
-#include <GL/gl.h>
-#include <GL/glext.h>
+#include "GLIncludes.h"
 
 class Texture
 {

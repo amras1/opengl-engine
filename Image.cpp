@@ -1,9 +1,8 @@
 #include "Image.h"
 #include "Debug.h"
 #include <iostream>
-#include <GL/glu.h>
-#include <GL/gl.h>
 #include <fstream>
+#include "GLIncludes.h"
 
 ERR_CODE Image::load(const std::string &file)
 {

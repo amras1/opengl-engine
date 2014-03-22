@@ -1,6 +1,6 @@
 #include "Texture.h"
 #include "Image.h"
-#include <GL/glu.h>
+#include "GLIncludes.h"
 
 Texture &Texture::operator=(const Texture &tex)
 {

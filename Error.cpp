@@ -21,6 +21,9 @@ std::string errString(ERR_CODE code)
         case BAD_BYTES_PER_PIXEL:
             err = "invalid number of bytes per pixel";
             break;
+        default:
+            err = "logic error";
+            break;
     }
 
     return err;

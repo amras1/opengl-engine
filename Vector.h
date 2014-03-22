@@ -1,7 +1,7 @@
 #ifndef VECTOR_H
 #define VECTOR_H
 #include <iostream>
-#include <GL/gl.h>
+#include "GLIncludes.h"
 
 template <class T>
 class Point2;

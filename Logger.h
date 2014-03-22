@@ -8,7 +8,7 @@
 
 const unsigned int LOG_FILE = 1;
 const unsigned int LOG_USER = 2;
-#define LOG_FILE_NAME "gameengine.txt"
+#define LOG_FILE_NAME "openglengine.txt"
 
 class Logger : public Singleton<Logger>
 {
@@ -23,7 +23,7 @@ public:
 
     Logger()
     {
-        file = file_open(LOG_FILE_NAME, "a");
+        file = file_open(LOG_FILE_NAME, "a+");
     }
 
     ~Logger()

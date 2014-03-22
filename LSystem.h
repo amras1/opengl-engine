@@ -1,6 +1,6 @@
 #ifndef LSYSTEM_H
 #define LSYSTEM_H
-#include <GL/glut.h>
+#include "GLIncludes.h"
 #include <string>
 #include <vector>
 #include <cmath>
@@ -13,7 +13,7 @@ const int MAX_LSYSTEM_DEPTH = 10;
 const float LSYSTEM_ANGLE = 24.8;
 const float LSYSTEM_BRANCH_SIZE = 0.04;
 
-enum GrammarSymbol //TODO: add support for parametric systems and more advanced symbols 7
+enum GrammarSymbol //TODO: add support for parametric systems and more advanced symbols
 {
     A = 1, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z,
     LEFT_BRACKET, RIGHT_BRACKET, PLUS, MINUS, NOP_X, NOP_Y, NOP_Z

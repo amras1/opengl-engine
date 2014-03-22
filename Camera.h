@@ -1,6 +1,6 @@
 #ifndef CAMERA_H
 #define CAMERA_H
-#include <GL/gl.h>
+#include "GLIncludes.h"
 #include "Vector.h"
 #include "Point.h"
 #include "Point.cpp" //TODO: fix this 3
@@ -20,9 +20,9 @@ public:
         orient(false);
     }
 
-    void rotateX(GLfloat);
-    void rotateY(GLfloat);
-    void rotateZ(GLfloat);
+    void rotateX(GLfloat x);
+    void rotateY(GLfloat y);
+    void rotateZ(GLfloat z);
 
     void advance(GLfloat scalar)
     {

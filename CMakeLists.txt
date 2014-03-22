@@ -1,0 +1,8 @@
+cmake_minimum_required (VERSION 2.6)
+project (opengl-engine)
+add_executable(opengl-engine main.cpp Camera.cpp Debug.cpp Error.cpp Image.cpp LSystem.cpp Logger.cpp Model.cpp ParticleSystem.cpp Point.cpp Quaternion.cpp Skybox.cpp Texture.cpp Utils.cpp Vector.cpp)
+find_package(OpenGL)
+find_package(GLUT)
+include_directories(${OPENGL_INCLUDE_DIRS} ${GLUT_INCLUDE_DIRS})
+target_link_libraries (opengl-engine ${OPENGL_LIBRARIES})
+target_link_libraries (opengl-engine ${GLUT_LIBRARIES})

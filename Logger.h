@@ -21,15 +21,8 @@ public:
         log(flags, msg + "\n");
     }
 
-    Logger()
-    {
-        file = file_open(LOG_FILE_NAME, "a+");
-    }
-
-    ~Logger()
-    {
-        fclose(file);
-    }
+    Logger();
+    ~Logger();
 };
 
 #define logger Logger::getInstance()

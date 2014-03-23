@@ -16,6 +16,7 @@ Texture grass, water, snow, fireworks;
 Camera cam, oldcam;
 Skybox box;
 Fountain fountain;
+Snow snowEffect;
 Plant plant;
 //SimplePlant simple_plant;
 Point3f fountain_pos(0.0, 0.0, -5.0);
@@ -115,6 +116,12 @@ void display()
     glTexCoord2f(200.0, 0.0);
     glVertex3f(1000.0, -1.0, -1000.0);
     glEnd();
+
+    glPushMatrix();
+    glScalef(10.0, 10.0, 10.0);
+    textureManager.bind(snow);
+    snowEffect.render();
+    glPopMatrix();
 
     glTranslatef(0.0, 0.0, -10.0);
     glPushMatrix();
@@ -250,6 +257,7 @@ void menu_handler(int id)
 void update(int)
 {
     fountain.update();
+    snowEffect.update();
     display();
     glutTimerFunc(30, update, 0);
 }

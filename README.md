@@ -7,7 +7,7 @@ Installation
 ------------
 Navigate to the build/ subdirectory and execute ``cmake ..`` for an out-of-source build, then call ``make``. CMake must be installed, and OpenGL and GLUT are required dependencies for this project.
 
-The sample program displays a textured grass floor, a skybox, plants procedurally generated using L-systems, and a particle water fountain. Right click to change fountain settings and press escape to quit.
+The sample program displays a textured grass floor, a skybox, plants procedurally generated using L-systems, snow, and a particle water fountain. Right click to change fountain settings and press escape to quit.
 
 Source description
 ------------------
